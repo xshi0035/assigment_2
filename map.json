@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": "Greenhouse_Gas_Source_And_Sink_Categors",
+  "width": 500,
+  "height": 500,
+  "data": {
+    "url": "emission.csv"
+  },
+  "params": [
+    {
+      "name": "Year",
+      "select": { "type": "point", "fields": ["Year"] },
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+
+          "1990",
+          "1991",
+          "1992",
+          "1993",
+          "1994",
+          "1995",
+          "1996",
+          "1997",
+          "1998",
+          "1999",
+          "2000",
+          "2001",
+          "2002",
+          "2003",
+          "2004",
+          "2005",
+          "2006",
+          "2007",
+          "2008",
+          "2009",
+          "2010",
+          "2011",
+          "2012",
+          "2013",
+          "2014",
+          "2015",
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020"
+        ]
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": { "param": "Year" }
+    },
+
+    {
+      "lookup": "State",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/xshi0035/xshi0035/refs/heads/main/australian-states.topojson.json",
+          "format": {
+            "type": "topojson",
+            "feature": "australian-states"
+          }
+        },
+        "key": "properties.STATE_NAME"
+      },
+      "as": "geo"
+    }
+  ],
+  "projection": { "type": "mercator" },
+  "mark": "geoshape",
+  "encoding": {
+    "shape": {
+      "field": "geo",
+      "type": "geojson"
+    },
+    "stroke": { "value": "black" },
+    "color": {
+      "field": "value",
+      "type": "quantitative",
+      "aggregate": "sum"
+    },
+
+    "tooltip": [
+      {
+        "field": "State",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "value",
+        "type": "quantitative",
+        "aggregate": "sum",
+        "title": "Greenhouse_Gas_Source_And_Sink_Categors"
+      }
+    ]
+  }
+}

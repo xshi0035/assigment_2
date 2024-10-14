@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "consume.csv"
+  },
+  "title": "consumption",
+  "width": 600,
+  "height": 400,
+  "params": [
+    {
+      "name": "ValueFilter",
+      "value": 100,
+      "bind": { "input": "range", "min": 1, "max": 300, "step": 1 }
+    }
+  ],
+  "transform": [
+    {
+      "fold": [
+        "2008-09",
+        "2009-10",
+        "2010-11",
+        "2011-12",
+        "2012-13",
+        "2013-14",
+        "2014-15",
+        "2015-16",
+        "2016-17",
+        "2017-18",
+        "2018-19",
+        "2019-20",
+        "2020-21",
+        "2021-22",
+        "2022-23"
+      ]
+    },
+    {
+      "filter": "datum.value <= ValueFilter"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "category",
+          "type": "nominal",
+          "axis": { "grid": false }
+        },
+        "y": { "field": "key", "type": "nominal", "axis": { "title": "" } },
+        "size": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Demand and energy_Annual electricity consumption",
+          "legend": { "clipHeight": 30 },
+          "scale": { "rangeMax": 1000 }
+        },
+        "color": { "field": "key", "type": "nominal", "legend": null },
+        "tooltip": [
+          {
+            "field": "key",
+            "type": "nominal",
+            "title": "Region"
+          },
+          {
+            "field": "category",
+            "type": "nominal",
+            "title": "Financial year"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Value"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "text": "Very small dots show very small values",
+        "align": "left",
+        "dx": -205,
+        "dy": -5
+      }
+    }
+  ]
+}
