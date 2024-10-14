@@ -4,16 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Energy Consumption and Greenhouse Gases Visualizations</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   </head>
 
   <body>
-    <main  style="display: grid;align-items: center;justify-items: center;">
-      <div id="map" style="width: 800px; height: 600px"></div>
-      <div id="circle" style="width: 800px; height: 600px"></div>
+    <main style="display: grid; align-items: center; justify-items: center;">
+      <h1>Energy Consumption and Greenhouse Gases Visualizations</h1>
+
+      <!-- Map Visualization -->
+      <section style="width: 800px; text-align: center;">
+        <h2>Greenhouse Gas Sources and Sinks Map</h2>
+        <div id="map" style="width: 800px; height: 600px;"></div>
+        <p>This map displays the categories of greenhouse gas sources and sinks.</p>
+      </section>
+
+      <!-- Bubble Chart Visualization -->
+      <section style="width: 800px; text-align: center;">
+        <h2>Annual Electricity Consumption Bubble Chart</h2>
+        <div id="circle" style="width: 800px; height: 600px;"></div>
+        <p>This bubble chart visualizes the demand and annual electricity consumption.</p>
+      </section>
     </main>
 
     <script>
